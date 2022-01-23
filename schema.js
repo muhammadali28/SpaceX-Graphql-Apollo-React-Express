@@ -1,4 +1,4 @@
-const { axios } = require('axios');
+const  axios  = require('axios');
 const res = require('express/lib/response');
 const {GraphQLObjectType, GraphQLInt, GraphQLString, GraphQLBoolean, GraphQLList, GraphQLSchema} = require('graphql');
 
@@ -8,7 +8,7 @@ const LaunchType = new GraphQLObjectType({
         flight_number : {type: GraphQLInt},
         mission_name : {type: GraphQLString},
         launch_year : {type: GraphQLInt},
-        lauch_date_local : {type: GraphQLString},
+        launch_date_local : {type: GraphQLString},
         launch_success : {type: GraphQLBoolean},
         rocket : {type: RocketType}
     })
@@ -17,7 +17,7 @@ const LaunchType = new GraphQLObjectType({
 const RocketType = new GraphQLObjectType({
     name: 'Rocket',
     fields: ()=> ({
-        rocket_id : {type: GraphQLInt},
+        rocket_id : {type: GraphQLString},
         rocket_name : {type: GraphQLString},
         rocket_type : {type: GraphQLString},
     })
@@ -56,7 +56,7 @@ const RootQuery = new GraphQLObjectType({
         rocket: {
             type: RocketType,
             args: {
-              id: { type: GraphQLInt }
+              id: { type: GraphQLString }
             },
             resolve(parent, args) {
               return axios
